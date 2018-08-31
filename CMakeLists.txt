@@ -42,7 +42,9 @@ project(kregielnia)
 
 # === Adding new sources in the future!
 set(SRC_LIST
-    src/BowlingAlley.cpp
+    src/Bowling.cpp
+    src/Alley.cpp
+    src/Player.cpp
 )
 
 include_directories(src)
@@ -52,7 +54,9 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 
 # == Adding new testing sources in the future!
 set(TEST_SRC_LIST
-    test/BowlingAlleyTest.cpp
+    test/BowlingTest.cpp
+    test/PlayerTest.cpp
+    test/AlleyTest.cpp
     test/test_main.cpp
 )
 
