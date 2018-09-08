@@ -25,14 +25,14 @@ bool Player::loadData(const std::string & data){
 }
 
 void Player::setName() {
-	size_t frontLoop = 0;
+    size_t frontLoop = 0;
 
-	std::string temp = "";
-	while (data_.at(frontLoop) != ':') {
-		temp += data_.at(frontLoop);
+    std::string temp = "";
+    while (data_.at(frontLoop) != ':') {
+        temp.push_back(data_.at(frontLoop));
 		frontLoop++;
 	}
-	name_ = temp;                   //sets loaded name as class varialbe
+    name_ = temp;                   //sets loaded name as class varialbe
 }
 
 
@@ -43,12 +43,19 @@ void Player::setScore() {
 	while (backLoop > name_.size()) {
 		if (isdigit(data_.at(backLoop)))
 			points_ += seti(data_, backLoop);
+        else if(data_.at(backLoop)=='/') points_ += (10 - seti(data_, backLoop-1));
+        else if(data_.at(backLoop)=='X') points_ += 10;
+        if(data_.at(backLoop-2)=='X' || data_.at(backLoop-2)=='/') points_ += seti(data_, backLoop);
+        if(data_.at(backLoop-3)=='X'){
+            if(data_.at(backLoop)=='/') points_ += (10 - seti(data_, backLoop-1));
+            else points_ += seti(data_, backLoop);
+        }
 		backLoop--;
 		}
 }
 
 std::string Player::getName(){
-	return name_;
+    return name_;
 }
 
 int Player::getStatus(){
