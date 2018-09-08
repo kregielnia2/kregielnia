@@ -45,12 +45,11 @@ void Player::setScore() {
 			points_ += seti(data_, backLoop);
         else if(data_.at(backLoop)=='/') points_ += (10 - seti(data_, backLoop-1));
         else if(data_.at(backLoop)=='X') points_ += 10;
-        if(data_.at(backLoop-2)=='X'||backLoop-2)=='/') points_ += seti(data_, backLoop);
+        if(data_.at(backLoop-2)=='X' || data_.at(backLoop-2)=='/') points_ += seti(data_, backLoop);
         if(data_.at(backLoop-3)=='X'){
             if(data_.at(backLoop)=='/') points_ += (10 - seti(data_, backLoop-1));
             else points_ += seti(data_, backLoop);
         }
-
 		backLoop--;
 		}
 }
