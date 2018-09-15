@@ -1,6 +1,7 @@
 #include "../inc/Player.hpp"
 #include <cctype>
 #include <string>
+#include <iostream>
 
 //converts "string element to int" based on ASCI
 int seti(const std::string &str, size_t element) {
@@ -38,14 +39,21 @@ void Player::setName() {
 
 
 void Player::setScore() {
-	size_t backLoop = data_.size()-1;
-	//adding all digits from string starting backwards ending on name position
-	while (backLoop > name_.size()) {
-		if (isdigit(data_.at(backLoop)))
-			points_ += seti(data_, backLoop);
-		backLoop--;
+	
+	int previousPoints = 0;
+	for (size_t i = name_.size() + 1; i < data_.size(); i++) {
+		
+		if (isdigit(data_.at(i))) {
+			points_ += seti(data_, i);
+			previousPoints = seti(data_, i);
+		}		
+		else switch (data_[i]){
+		case 'X': points_ += 10; break;
+		case '/': points_ += (10 - previousPoints); break;
+		case '-': break;
+		default: break;
 		}
-}
+}	}
 
 std::string Player::getName(){
 	return name_;
