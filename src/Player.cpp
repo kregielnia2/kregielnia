@@ -8,17 +8,27 @@ int stringToInt(const std::string &str, size_t element) {
 	return str.at(element) - 48;
 }
 
-//TO DO
-bool Player::validateInput(const std::string& str) {
-	return true;
+void Player::setGameStatus(){
+	int separators = std::count( (data_.begin() + name_.size() + 1), data_.end(), '|');
+	if (separators == 11)
+		status_ = finished;
+	else if (separators < 11)
+		status_ = in_progress;
+	else
+		status_ = no_game;
 }
 
-//TO DO
+bool Player::validateInput(const std::string& str, bool log) {
+	return true;
+	
+}
+
 bool Player::loadData(const std::string & data){
 	if (!data.empty())
 		if (validateInput(data)) {   //validates if data is correct
 			data_ = data;            //loading data to object
 			setName();               //setting name based on loaded data
+			setGameStatus();         //setting GameStatus (requires name_)
 			setScore();              //setting score based on loaded data
 			return true;
 		}
@@ -38,7 +48,6 @@ void Player::setName() {
 
 
 void Player::setScore() {
-	
 	int previousPoints = 0;
 	for (size_t i = name_.size() + 1; i < data_.size(); i++) {
 		
