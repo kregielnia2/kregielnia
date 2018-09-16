@@ -4,7 +4,7 @@
 #include <iostream>
 
 //converts "string element to int" based on ASCI
-int seti(const std::string &str, size_t element) {
+int stringToInt(const std::string &str, size_t element) {
 	return str.at(element) - 48;
 }
 
@@ -33,9 +33,8 @@ void Player::setName() {
 		temp += data_.at(frontLoop);
 		frontLoop++;
 	}
-	name_ = temp;                   //sets loaded name as class varialbe
+	name_ = temp;
 }
-
 
 
 void Player::setScore() {
@@ -44,8 +43,8 @@ void Player::setScore() {
 	for (size_t i = name_.size() + 1; i < data_.size(); i++) {
 		
 		if (isdigit(data_.at(i))) {
-			points_ += seti(data_, i);
-			previousPoints = seti(data_, i);
+			points_ += stringToInt(data_, i);
+			previousPoints = stringToInt(data_, i);
 		}		
 		else switch (data_[i]){
 		case 'X': points_ += 10; break;
