@@ -1,6 +1,6 @@
 #include "../inc/Player.hpp"
 #include <cctype>
-#include <string>
+#include <algorithm>
 #include <iostream>
 
 //converts "string element to int" based on ASCI
@@ -20,7 +20,6 @@ void Player::setGameStatus(){
 
 bool Player::validateInput(const std::string& str, bool log) {
 	return true;
-	
 }
 
 bool Player::loadData(const std::string & data){
