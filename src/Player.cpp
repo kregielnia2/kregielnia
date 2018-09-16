@@ -18,7 +18,35 @@ void Player::setGameStatus(){
 		status_ = no_game;
 }
 
-bool Player::validateInput(const std::string& str, bool log) {
+bool Player::validateInput(const std::string& str) {
+	int name_size = 0;
+	{//scope
+		bool colonFlag = false;
+		//calculates name size
+		for (size_t i = 0; i < str.size(); i++) {
+			if (str.at(i) != ':')
+				name_size++;
+			else {
+				colonFlag = true;
+				break;
+		}}
+		//in string there is not a colon - name separator
+		if (colonFlag == false)
+			return false;
+		}
+	//data starting past name_ is too long or overall to short
+	if ((str.size() - name_size + 1) > 33 || str.size() < 3)
+		return false;
+	{//scope
+		int separators = std::count((str.begin() + name_size + 1), str.end(), '|');
+		//if too many separators
+		if (separators > 11)
+			return false;
+		//if last frame separator is not dual
+		if (separators == 10)
+			return false;
+	}
+
 	return true;
 }
 
