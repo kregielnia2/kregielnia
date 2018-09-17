@@ -1,6 +1,11 @@
 #pragma once
 #include <string>
 
+struct validator{
+
+	bool validateInput(const std::string& str);
+};
+
 class Player {
 private:
 	enum GameStatus {none, no_game, in_progress, finished};
@@ -13,7 +18,7 @@ private:
 	void setScore();        //sets score based on loaded data_
 	void setGameStatus();   //sets GameStatus based on string format from data_ (requires name_)
 public:
-	bool validateInput(const std::string& str);   //validates data input
+	bool validateInput(const std::string& str);   //validates data input (fix of object gameStatus)
 	bool loadData(const std::string& data);       //loads validated data
 	
 	int getPoints();
