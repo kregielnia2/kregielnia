@@ -40,7 +40,7 @@ bool Validator::operator() (const std::string& str) {
 	{
 		int elementsInFrame = 0;  //are there more elements in frame than allowed
 		bool xInFrame = false;    //was X in the current frame
-		int maxMoves = 20;        //max moves without bonuses from spare or strikes
+		maxMoves = 20;            //max moves without bonuses from spare or strikes
 
 		i = name_size + 1;        //starting after name and separator char ':'	
 		while (i < str.size()) {
@@ -76,9 +76,13 @@ bool Validator::operator() (const std::string& str) {
 				xInFrame = false;
 				break;
 			}
-			//if there is another elemenet in frame with X
-			if (xInFrame && elementsInFrame > 1)
+			//if there is another elemenet in frame with X before bonus frame
+			if (xInFrame && elementsInFrame > 1 && i < bonusFrame)
 				return false;
+			
+			//if there is spare '\' without number or with strike 'X'
+			
+
 			//if there are more than 2 elements in frame without X
 			if (elementsInFrame > 2)
 				return false;
@@ -87,6 +91,7 @@ bool Validator::operator() (const std::string& str) {
 		//if there is a separator "||" but there are to much bonus moves
 		if (bonusFrame > 0 && str.size() > bonusFrame + bonusMoves + 2)
 			return false;
+
 	}
 	return true;
 }

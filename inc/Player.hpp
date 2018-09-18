@@ -14,7 +14,7 @@ private:
 	void setScore();        //sets score based on loaded data_
 	void setGameStatus();   //sets GameStatus based on string format from data_ (requires name_)
 public: 
-	bool loadData(const std::string& data);       //loads validated data
+	bool loadData(const std::string& data);   //loads validated data
 	
 	int getPoints();
 	int getStatus();
