@@ -10,7 +10,7 @@ int stringToInt(const std::string &str, size_t element) {
 
 void Player::setGameStatus(){
 	int separators = std::count( (data_.begin() + name_.size() + 1), data_.end(), '|');
-	if ( (validate.bonusFrame + validate.bonusMoves + 2) > data_.size()) //30 + 2 > 34 
+	if ( (validate.bonusFrame + validate.bonusMoves + 2) > data_.size())
 		status_ = in_progress;
 	else if (separators == 11)
 		status_ = finished;

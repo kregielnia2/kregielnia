@@ -81,11 +81,17 @@ bool Validator::operator() (const std::string& str) {
 				return false;
 			
 			//if there is spare '\' without number or with strike 'X'
-			
+			if (str.at(i) == '/' && std::isdigit(str.at(i-1)) == 0)
+				return false;
 
 			//if there are more than 2 elements in frame without X
 			if (elementsInFrame > 2)
 				return false;
+
+			//there cannot be spare in bonus move/s
+			if (i > bonusFrame && str.at(i) == '/')
+				return false;
+
 			i++;
 		}
 		//if there is a separator "||" but there are to much bonus moves
