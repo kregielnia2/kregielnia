@@ -45,6 +45,7 @@ set(SRC_LIST
     src/Bowling.cpp
     src/Alley.cpp
     src/Player.cpp
+    src/Validator.cpp
 )
 
 include_directories(src)
@@ -57,6 +58,7 @@ set(TEST_SRC_LIST
     test/BowlingTest.cpp
     test/PlayerTest.cpp
     test/AlleyTest.cpp
+    test/ValidatorTest.cpp
     test/test_main.cpp
 )
 
